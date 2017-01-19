@@ -49,7 +49,11 @@ var App = new Vue({
       noUiSlider.create($(this)[0], {
         start: elobj.value[2],
         connect: [true, false],
-        tooltips: [true],
+        tooltips: [wNumb ({ 
+          encoder: function (val) {
+            return elobj.step == 0.1 ? Math.floor(val * 10) / 10 : val * 1.00
+          }
+        })],
         step: elobj.step,
         range: {
           'min': elobj.value[0],
