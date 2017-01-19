@@ -1,0 +1,53 @@
+html,body {
+  margin: 0;
+  padding: 0; 
+  color: #555;
+  font-size: 14px;
+   background-color: #f8f9fa;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Menlo, Monaco, Consolas, "Helvetica Neue", Helvetica, "Courier New", 微软雅黑, monospace, Arial, sans-serif, 黑体;
+  
+}
+
+.filters-wraper {
+  width: 80%;
+  margin: 50px auto;
+}
+
+.fil-item {
+  width: 33%;
+  float: left;
+  padding: 20px;
+ 
+}
+
+.fil-item .inner {
+  background-color: #FFF;
+  padding: 10px;
+}
+
+
+.fil-item h3{
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.fil-item  img{
+  max-width: 100%;
+}
+
+.fil-item .code {
+  background-color: #256DB6;
+  padding: 10px;
+  color: #FFF
+}
+
+.fil-item .val-range {
+  width: 100%;
+  margin: 10px 0;
+}

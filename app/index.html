@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link href="css/nouislider.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  </head>
+<body>
+  <div id="app">
+     <div class="filters-wraper">
+        <div class="fil-item" v-for="(item, $index) in filters">
+          <div class="inner">
+              <h3>{{item.name}}</h3>
+              <img :src="img" :style="computeStyle(item)">
+
+              <div  class="val-range" v-bind:data-val="$index"></div>
+              <div class="code">
+                <pre>
+-webkit-filter: {{item.name}}(0px);
+filter: {{item.name}}(0px);
+                </pre>
+              </div>
+            </div>
+        </div>
+     </div>
+  </div>
+
+<script src="js/jquery.js" charset="utf-8"></script>
+<script src="js/vue.min.js" charset="utf-8"></script>
+<script src="js/nouislider.js"></script>
+<script src="js/main.js"></script>
+
+
+
+</body>
