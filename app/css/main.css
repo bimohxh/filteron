@@ -12,8 +12,32 @@ html,body {
   
 }
 
+.v-cloak {
+  display: none
+}
+
+a {
+  transition: all,.5s,ease,0s;
+  -webkit-transition: all,.5s,ease,0s;
+  text-decoration: none
+}
+a:link, a:visited {
+  color: #444
+}
+
+a:active, a:hover {
+  color: #f14f4f
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  fill: #000;
+}
+
 .filters-wraper {
-  width: 80%;
+  width: 70%;
   margin: 50px auto;
 }
 
@@ -42,12 +66,98 @@ html,body {
 }
 
 .fil-item .code {
-  background-color: #256DB6;
+  background-color: rgba(184, 145, 63, 0.87);
   padding: 10px;
-  color: #FFF
+  color: #FFF;
+  word-wrap: break-word;
+  word-break: break-all;
+  font-size: 12px;
 }
 
 .fil-item .val-range {
   width: 100%;
   margin: 10px 0;
+}
+
+.navbar {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+/*合并视图*/
+
+.combine-view {
+  width: 75%;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 270px
+}
+
+.left-bar {
+  width: 250px;
+  position: absolute;
+  left: 0;
+}
+
+.right-con {
+  background-color: #FFF;
+  padding: 20px;
+}
+
+.right-con img{
+  max-width: 100%
+}
+
+.slider-item {
+  width: 100%;
+  position: relative;
+  padding-right: 60px;
+  padding-left: 50px;
+  margin: 20px 0;
+}
+
+.slider-item  .slide-txt{
+  position: absolute;
+  right: 0;
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  top: -5px;
+  padding: 5px 0;
+  outline: none;
+  border: 1px solid #D3D3D3;
+  box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
+}
+
+.enable-btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.slider-item .icon {
+  
+  width: 15px;
+  height: 15px;
+  fill: #f14f4f;
+}
+
+/*switch btn style patch*/
+.Switch_LIKE {
+  width: 35px;
+  height: 20px;
+}
+
+.Switch_LIKE .SwitchButton {
+  width: 20px;
+  height: 20px;
+}
+.Switch_LIKE .SwitchButton:after {
+  width: 8px;
+  height: 8px;
+  top: 6px;
+  left: 6px;
+}
+.Switch_LIKE.On .SwitchButton {
+  left: 15px;
 }

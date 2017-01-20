@@ -3,32 +3,78 @@
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link href="css/nouislider.css" rel="stylesheet">
+  <link href="css/simple.switch.three.css" rel="stylesheet">
   <link href="css/main.css" rel="stylesheet">
   </head>
 <body>
   <div id="app">
+    
+    <!--filter列表-->
      <div class="filters-wraper">
-        <div class="fil-item" v-for="(item, $index) in filters">
-          <div class="inner">
-              <h3>{{item.name}}</h3>
-              <img :src="img" :style="computeStyle(item)">
-
-              <div  class="val-range" v-bind:data-val="$index"></div>
-              <div class="code">
-                <pre>
--webkit-filter: {{item.name}}(0px);
-filter: {{item.name}}(0px);
-                </pre>
-              </div>
-            </div>
+        <!--菜单栏-->
+        <div class="navbar"> 
+          <a href="javascript:void(0)" @click="view = 'seperate'">独立视图</a>
+          <a href="javascript:void(0)" @click="view = 'combine'">合成视图</a>
         </div>
+
+        <!--合成视图-->
+        <div class="combine-view" v-show="view == 'combine'">
+          <div class="left-bar">
+              <template v-for="(item, $index) in filters">
+                <h3>{{item.name}}</h3>
+                <vue-slider :item="item" :index="$index" ></vue-slider>
+              </template>
+              
+          </div>
+          <div class="right-con">
+            <img :src="img" :style="computeAllStyle()">
+          </div>
+        </div>
+
+        <!--独立视图-->
+        <div v-show="view == 'seperate'"> 
+          <div class="fil-item" v-for="(item, $index) in filters" v-cloak>
+            <h3>{{item.name}}</h3>
+            <div class="inner">
+                <img :src="img" :style="computeStyle(item)">
+                <vue-slider :item="item" :index="$index"></vue-slider>
+                <div class="code">
+                  <div>-webkit-filter: {{item.name}}({{item.value[2]}}{{item.unit || 'px'}});</div>
+                  <div>filter: {{item.name}}({{item.value[2]}}{{item.unit || 'px'}});</div>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        
      </div>
+
+
+     <!--滑块组件-->
+    <script type="text/x-template" id="slider-template">
+      <div class="slider-item" >
+        <!--<div class="enable-btn">
+          <svg class="icon" @click="expand($event)" >
+            <use xlink:href="svg/icon.svg#check"></use>
+          </svg>
+        </div>-->
+        <div class="enable-btn">
+          <input type="checkbox" class="checkbox" checked/>
+          </div>
+
+        
+        <div  class="val-range"   v-bind:data-index="index"></div>
+        <input type="text" v-model="item.value[2]" class="slide-txt" @keyup="setSliderVal(index, item)" @change="setSliderVal(index, item)"/>
+      </div>
+    </script>
+
   </div>
 
 <script src="js/jquery.js" charset="utf-8"></script>
 <script src="js/vue.min.js" charset="utf-8"></script>
 <script src="js/wNumb.js"  charset="utf-8"></script>
 <script src="js/nouislider.js"></script>
+<script src="js/simple.switch.min.js"></script>
 <script src="js/main.js"></script>
 
 
