@@ -22,53 +22,93 @@
           <div class="left-bar">
               <template v-for="(item, $index) in filters">
                 <h3>{{item.name}}</h3>
-                <vue-slider :item="item" :index="$index" ></vue-slider>
+                <vue-slider :item="item" :index="$index" :switchen="true"></vue-slider>
               </template>
               
           </div>
           <div class="right-con">
-            <img :src="img" :style="computeAllStyle()">
+            <div class="img-wraper">
+              <img :src="img" :style="computeAllStyle()">
+            </div>
+            <vue-code :sfilters="usables()" ></vue-code>
           </div>
         </div>
 
         <!--独立视图-->
-        <div v-show="view == 'seperate'"> 
+        <div v-show="view != 'combine'"> 
           <div class="fil-item" v-for="(item, $index) in filters" v-cloak>
-            <h3>{{item.name}}</h3>
+            <h3>{{item.name}} 
+              <span>({{item.desc}})</span>
+              <a href="javascript:void(0)" :title="'关于 ' + item.name"  @click="item.view = (item.view == 'about' ? 'normal' : 'about')">
+                <svg class="icon icon-quetion">
+                  <use xlink:href="svg/icon.svg#question"></use>
+                </svg>
+              </a>
+              </h3>
             <div class="inner">
-                <img :src="img" :style="computeStyle(item)">
-                <vue-slider :item="item" :index="$index"></vue-slider>
-                <div class="code">
-                  <div>-webkit-filter: {{item.name}}({{item.value[2]}}{{item.unit || 'px'}});</div>
-                  <div>filter: {{item.name}}({{item.value[2]}}{{item.unit || 'px'}});</div>
-                </div>
+              <img :src="img" :style="computeStyle(item)">
+              <vue-slider :item="item" :index="$index"></vue-slider>
+              <vue-code :sfilters="[item]" ></vue-code>
+              <div class="extra">
+                <a  href="javascript:void(0)" title="切换到Hover动画" @click="item.view = 'hover'" :class="'hover-btn active-' + (item.view == 'hover')">
+                  <svg class="icon">
+                    <use xlink:href="svg/icon.svg#computer"></use>
+                  </svg>
+                </a>
               </div>
+
+              <!--关于-->
+              <div class="about" v-show="item.view == 'about'">
+                {{item.fdesc}}
+              </div>
+            </div>
+
+            
           </div>
         </div>
-
         
      </div>
 
-
-     <!--滑块组件-->
-    <script type="text/x-template" id="slider-template">
-      <div class="slider-item" >
-        <!--<div class="enable-btn">
-          <svg class="icon" @click="expand($event)" >
-            <use xlink:href="svg/icon.svg#check"></use>
-          </svg>
-        </div>-->
-        <div class="enable-btn">
-          <input type="checkbox" class="checkbox" checked/>
-          </div>
-
-        
-        <div  class="val-range"   v-bind:data-index="index"></div>
-        <input type="text" v-model="item.value[2]" class="slide-txt" @keyup="setSliderVal(index, item)" @change="setSliderVal(index, item)"/>
-      </div>
-    </script>
-
   </div>
+
+  <!--滑块组件-->
+  <script type="text/x-template" id="slider-template">
+    <div class="slider-item" :class="'switchen-' + switchen + ' enabled-' + item.enabled "> 
+      <div class="enable-btn" v-if="switchen">
+        <input type="checkbox" class="checkbox" v-model="item.enabled"/>
+      </div>
+
+      
+      <div  class="val-range"   v-bind:data-index="index"></div>
+      <input type="text" v-model="item.value[2]" class="slide-txt" @keyup="setSliderVal(index, item)" @change="setSliderVal(index, item)"/>
+    </div>
+  </script>
+
+  <!--代码组件-->
+  <script type="text/x-template" id="code-template">
+    <div class="code">
+      <div>
+        <span class="code-name">-webkit-filter</span>
+        <span>: </span>
+        <template v-for="item in sfilters">
+            <span class="code-key">{{item.name}}</span>
+            <span>(</span>
+            <span  class="code-val">{{item.value[2]}}{{item.unit || ''}}</span>
+            <span>);</span>
+        </template>
+      </div>
+      <div>
+        <span class="code-name">filter</span>
+        <span>: </span>
+        <template v-for="item in sfilters">
+            <span class="code-key">{{item.name}}</span>
+            <span>(</span>
+            <span  class="code-val">{{item.value[2]}}{{item.unit || ''}}</span>
+            <span>);</span>
+        </template>
+      </div>
+    </div>
+  </script>
 
 <script src="js/jquery.js" charset="utf-8"></script>
 <script src="js/vue.min.js" charset="utf-8"></script>

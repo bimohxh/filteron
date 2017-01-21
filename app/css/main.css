@@ -16,7 +16,7 @@ html,body {
   display: none
 }
 
-a {
+a, svg {
   transition: all,.5s,ease,0s;
   -webkit-transition: all,.5s,ease,0s;
   text-decoration: none
@@ -51,6 +51,8 @@ a:active, a:hover {
 .fil-item .inner {
   background-color: #FFF;
   padding: 10px;
+  padding-bottom: 20px;
+  position: relative
 }
 
 
@@ -66,9 +68,7 @@ a:active, a:hover {
 }
 
 .fil-item .code {
-  background-color: rgba(184, 145, 63, 0.87);
   padding: 10px;
-  color: #FFF;
   word-wrap: break-word;
   word-break: break-all;
   font-size: 12px;
@@ -77,6 +77,45 @@ a:active, a:hover {
 .fil-item .val-range {
   width: 100%;
   margin: 10px 0;
+}
+
+.fil-item .about {
+  position: absolute;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.95);;
+  padding: 20px;
+  bottom: 0;
+  left: 0; 
+  right: 0;
+  z-index: 1000;
+  font-family: '微软雅黑';
+  line-height: 25px;
+}
+
+.fil-item .extra {
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.fil-item .extra .icon {
+  fill: #ddd;
+}
+
+.hover-btn.active-true  .icon{
+  fill: #f14f4f
+}
+
+.icon-quetion {
+  fill: #DDD;
+  width: 15px;
+  height: 15px;
+}
+
+
+.icon-quetion:hover {
+  fill: #333
 }
 
 .navbar {
@@ -88,7 +127,7 @@ a:active, a:hover {
 /*合并视图*/
 
 .combine-view {
-  width: 75%;
+  width: 100%;
   margin: 0 auto;
   position: relative;
   padding-left: 270px
@@ -101,6 +140,10 @@ a:active, a:hover {
 }
 
 .right-con {
+  padding: 20px;
+}
+
+.right-con .img-wraper{
   background-color: #FFF;
   padding: 20px;
 }
@@ -109,12 +152,29 @@ a:active, a:hover {
   max-width: 100%
 }
 
+.right-con .code {
+  padding: 20px;
+  background-color: #f5f2f0
+}
+
+.right-con .code > div {
+  margin: 10px 0
+}
+
 .slider-item {
   width: 100%;
   position: relative;
   padding-right: 60px;
-  padding-left: 50px;
+  
   margin: 20px 0;
+}
+
+.slider-item.switchen-true {
+  padding-left: 50px;
+}
+
+.slider-item.enabled-false.switchen-true .noUi-connect {
+  background: rgb(224, 224, 224);
 }
 
 .slider-item  .slide-txt{
@@ -133,7 +193,7 @@ a:active, a:hover {
 .enable-btn {
   position: absolute;
   left: 0;
-  top: 0;
+  top: -5px;
 }
 .slider-item .icon {
   
@@ -142,6 +202,30 @@ a:active, a:hover {
   fill: #f14f4f;
 }
 
+.code > div {
+  overflow: hidden;
+  margin: 10px 0;
+}
+.code  > div  * {
+  display: inline-block;
+  float:left
+}
+
+/*代码高亮*/
+.code .code-name {
+  color: #1E88DB
+}
+
+.code .code-key {
+  color: #B85B2E;
+  margin-left: 5px;
+}
+
+.code .code-val {
+  color: #B5C87C
+}
+
+
 /*switch btn style patch*/
 .Switch_LIKE {
   width: 35px;
@@ -149,8 +233,9 @@ a:active, a:hover {
 }
 
 .Switch_LIKE .SwitchButton {
-  width: 20px;
-  height: 20px;
+  width: 23px;
+  height: 23px;
+  top: -2px
 }
 .Switch_LIKE .SwitchButton:after {
   width: 8px;
@@ -161,3 +246,18 @@ a:active, a:hover {
 .Switch_LIKE.On .SwitchButton {
   left: 15px;
 }
+.Switch_LIKE.On .SwitchButton:after {
+  width: 0;
+  height: 8px;
+  border: 1.5px solid #69ddf1;
+  left: 11px;
+}
+.Switch_LIKE .SwitchLine:after {
+  content: ''
+}
+.Switch_LIKE .SwitchButton:after {
+  border: 1.5px solid #f88c8c;
+  left: 7px;
+  top: 7px;
+}
+
