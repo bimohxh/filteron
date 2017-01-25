@@ -86,13 +86,24 @@
 
   Vue.use({
     install: function (Vue, options) {
+
        // 计算单独样式
-      Vue.prototype.computeStyle = function (item) {
+      Vue.prototype.computeStyle = function (item, index) {
         var style = {}
         var val = item.name + '(' + item.value[2] + (item.unit || '') + ')'
         style['-webkit-filter'] = val
         style['filter'] = val
-        return style
+        
+        var styleval = JSON.stringify(style).replace(/"/g, '').replace(/,/g, ';')
+        var _id = 'img-style-' + index
+        $('#' + _id).remove()
+        if(item.view == 'hover') {
+          $('body').append('<style type="text/css" id="' + _id + '">.imgp-' + index + ':hover' + styleval + '</style>')
+        } else {
+          $('body').append('<style type="text/css" id="' + _id + '">.imgp-' + index + styleval + '</style>')
+        }
+        return ''
+
       }
 
        // 计算所有样式
@@ -116,6 +127,11 @@
       // 判断数据类型
       Vue.prototype.setSliderVal = function (index, item) {
         silders[index].noUiSlider.set(item.value[2]);
+      }
+
+      // 切换hover效果
+      Vue.prototype.switchHover = function (item) {
+        item.view = (item.view == 'hover' ? 'code' : 'hover')
       }
     }
   })

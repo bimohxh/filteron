@@ -46,11 +46,11 @@
               </a>
               </h3>
             <div class="inner">
-              <img :src="img" :style="computeStyle(item)">
+              <img :src="img" :style="computeStyle(item, $index)" :class="'imgp-' + $index">
               <vue-slider :item="item" :index="$index"></vue-slider>
               <vue-code :sfilters="[item]" ></vue-code>
               <div class="extra">
-                <a  href="javascript:void(0)" title="切换到Hover动画" @click="item.view = 'hover'" :class="'hover-btn active-' + (item.view == 'hover')">
+                <a  href="javascript:void(0)" title="切换到Hover动画" @click="switchHover(item)" :class="'hover-btn active-' + (item.view == 'hover')">
                   <svg class="icon">
                     <use xlink:href="svg/icon.svg#computer"></use>
                   </svg>
@@ -62,7 +62,7 @@
                 {{item.fdesc}}
               </div>
             </div>
-
+            
             
           </div>
         </div>
@@ -90,21 +90,23 @@
       <div>
         <span class="code-name">-webkit-filter</span>
         <span>: </span>
-        <template v-for="item in sfilters">
+        <template v-for="(item, $index) in sfilters">
             <span class="code-key">{{item.name}}</span>
             <span>(</span>
             <span  class="code-val">{{item.value[2]}}{{item.unit || ''}}</span>
-            <span>);</span>
+            <span>)</span>
+            <span v-if="$index == sfilters.length - 1">;</span>
         </template>
       </div>
       <div>
         <span class="code-name">filter</span>
         <span>: </span>
-        <template v-for="item in sfilters">
+        <template v-for="(item, $index) in sfilters">
             <span class="code-key">{{item.name}}</span>
             <span>(</span>
             <span  class="code-val">{{item.value[2]}}{{item.unit || ''}}</span>
-            <span>);</span>
+            <span>)</span>
+            <span v-if="$index == sfilters.length - 1">;</span>
         </template>
       </div>
     </div>

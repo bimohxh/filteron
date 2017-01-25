@@ -21,12 +21,18 @@ a, svg {
   -webkit-transition: all,.5s,ease,0s;
   text-decoration: none
 }
+
 a:link, a:visited {
   color: #444
 }
 
 a:active, a:hover {
   color: #f14f4f
+}
+
+img {
+  transition: all,.5s,ease,0s;
+  -webkit-transition: all,.5s,ease,0s;
 }
 
 .icon {
@@ -72,6 +78,7 @@ a:active, a:hover {
   word-wrap: break-word;
   word-break: break-all;
   font-size: 12px;
+  height: 100px;
 }
 
 .fil-item .val-range {
