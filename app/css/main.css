@@ -47,6 +47,19 @@ img {
   margin: 50px auto;
 }
 
+#imgpreview {
+  display: none
+}
+
+.sourceimg {
+  display: block;
+  width: 40%;
+  margin: 0 auto;
+  border: #EEE 3px solid;
+  padding: 10px;
+  outline: none
+}
+
 .fil-item {
   width: 33%;
   float: left;

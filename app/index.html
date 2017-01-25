@@ -17,6 +17,11 @@
           <a href="javascript:void(0)" @click="view = 'combine'">合成视图</a>
         </div>
 
+        <div>
+          <input type="text" class="sourceimg" placeholder="更换图片地址" v-model="sourcesrc" />
+          <img :src="sourcesrc"  id="imgpreview"/>
+        </div>
+
         <!--合成视图-->
         <div class="combine-view" v-show="view == 'combine'">
           <div class="left-bar">

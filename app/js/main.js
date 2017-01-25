@@ -143,6 +143,7 @@
     data: {
       img: 'img/demo.jpg',
       view: 'seperate',
+      sourcesrc: '',
       filters: filerArr
     },
     methods: {
@@ -154,6 +155,13 @@
      }
 
       
+    },
+    watch: {
+      sourcesrc: function (val) {
+        if(val == '') {
+          this.img = 'img/demo.jpg'
+        }
+      }
     },
     mounted: function () {
       var _this = this
@@ -199,4 +207,10 @@
       })
     }
   })
+
+  $('#imgpreview').load(function () {
+    if(!App) { return }
+    App.img = App.sourcesrc
+  })
 })()
+
