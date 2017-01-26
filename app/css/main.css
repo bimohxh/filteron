@@ -12,6 +12,18 @@ html,body {
   
 }
 
+.left {
+  float: left
+}
+
+.right {
+  float: right
+}
+
+.clear {
+  clear: both
+}
+
 .v-cloak {
   display: none
 }
@@ -42,9 +54,22 @@ img {
   fill: #000;
 }
 
+.site-slogan {
+  padding: 10px;
+}
+.site-slogan * {
+  display: inline-block
+}
+
+.site-slogan small {
+  color: #ccc
+}
+
+
 .filters-wraper {
   width: 70%;
   margin: 50px auto;
+  min-width: 1000px;
 }
 
 #imgpreview {
@@ -112,11 +137,42 @@ img {
   line-height: 25px;
 }
 
-.fil-item .extra {
-  display: inline-block;
+.fil-item .full-code-waper {
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.95);;
+  padding: 20px;
+  z-index: 1000;
+
+}
+
+.full-code-waper p {
+  margin: 0; 
+  padding: 0;
+}
+
+.full-code-waper .tip {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 5px 10px;
+  background-color: rgba(110, 191, 95, 0.47);
+  font-size: 12px;
+  position: absolute;
+  left: 50%;
+  margin-left: -52px;
+  color: #1f8e0a;
+  top: 12px;
+}
+
+.fil-item .extra {
+  overflow: hidden
+}
+
+.icon-switch-hover {
+  float: right
 }
 
 .fil-item .extra .icon {
@@ -141,6 +197,16 @@ img {
 .navbar {
   text-align: center;
   margin-bottom: 20px;
+}
+
+.navbar  a {
+  transition: none;
+  -webkit-transition: none;
+}
+
+.navbar .active-true {
+  color: #f14f4f;
+  font-size: 17px;
 }
 
 
@@ -222,10 +288,23 @@ img {
   fill: #f14f4f;
 }
 
+
+footer {
+  padding: 40px 0;
+  text-align: center;
+  color: #ccc;
+}
+
+
+
 .code > div {
   overflow: hidden;
   margin: 10px 0;
 }
+.code > .code-inner {
+  margin-left: 10px;
+}
+
 .code  > div  * {
   display: inline-block;
   float:left
@@ -243,6 +322,10 @@ img {
 
 .code .code-val {
   color: #B5C87C
+}
+
+.code .code-class {
+  color: #ad7a0e
 }
 
 

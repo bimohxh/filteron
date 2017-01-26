@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <link href="css/nouislider.css" rel="stylesheet">
-  <link href="css/simple.switch.three.css" rel="stylesheet">
-  <link href="css/main.css" rel="stylesheet">
+    <title>在线图片Filter</title>
+    <meta charset="utf-8" />
+    <meta name="keywords" content="filter,滤镜,css3 filter,图片滤镜"/>
+    <meta name="description" content="图片 css3 滤镜效果在线预览"/>
+    <link href="css/nouislider.css" rel="stylesheet">
+    <link href="css/simple.switch.three.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
   </head>
 <body>
+  <div class="site-slogan">
+      <h2>Filter On</h2>
+      <small>一个好用的在线图片滤镜效果可视化工具</small>
+    </div>
   <div id="app">
+    
     
     <!--filter列表-->
      <div class="filters-wraper">
         <!--菜单栏-->
         <div class="navbar"> 
-          <a href="javascript:void(0)" @click="view = 'seperate'">独立视图</a>
-          <a href="javascript:void(0)" @click="view = 'combine'">合成视图</a>
+          <a href="javascript:void(0)" @click="view = 'seperate'" :class="'active-' + (view == 'seperate')">独立视图</a>
+          <span> / </span>
+          <a href="javascript:void(0)" @click="view = 'combine'" :class="'active-' + (view == 'combine')">合成视图</a>
         </div>
 
         <div>
@@ -55,8 +64,14 @@
               <vue-slider :item="item" :index="$index"></vue-slider>
               <vue-code :sfilters="[item]" ></vue-code>
               <div class="extra">
+                <a  href="javascript:void(0)" title="完整代码" @click="item.view = 'fullcode'">
+                  <svg class="icon icon-full-code">
+                    <use xlink:href="svg/icon.svg#computer"></use>
+                  </svg>
+                </a>
+
                 <a  href="javascript:void(0)" title="切换到Hover动画" @click="switchHover(item)" :class="'hover-btn active-' + (item.view == 'hover')">
-                  <svg class="icon">
+                  <svg class="icon icon-switch-hover">
                     <use xlink:href="svg/icon.svg#computer"></use>
                   </svg>
                 </a>
@@ -65,6 +80,30 @@
               <!--关于-->
               <div class="about" v-show="item.view == 'about'">
                 {{item.fdesc}}
+              </div>
+
+              <!--完整代码-->
+              <div class="full-code-waper" v-show="item.view == 'fullcode'">
+                <div>
+                  <a href="javascript:void(0)" title="复制代码" >
+                    <svg class="icon icon-quetion">
+                      <use xlink:href="svg/icon.svg#question"></use>
+                    </svg>
+                  </a>
+
+                  <a href="javascript:void(0)" title="关闭" class="right" @click="item.view = 'hover'">
+                    <svg class="icon icon-quetion">
+                      <use xlink:href="svg/icon.svg#question"></use>
+                    </svg>
+                  </a>
+
+                  <div class="tip">
+                    代码复制成功！
+                  </div>
+
+                </div>
+
+                <vue-fullcode :sfilters="[item]" ></vue-fullcode>
               </div>
             </div>
             
@@ -75,6 +114,11 @@
      </div>
 
   </div>
+
+  <div class="clear"></div>
+  <footer>
+    Created by @bimohxh
+  </footer>
 
   <!--滑块组件-->
   <script type="text/x-template" id="slider-template">
@@ -92,19 +136,8 @@
   <!--代码组件-->
   <script type="text/x-template" id="code-template">
     <div class="code">
-      <div>
-        <span class="code-name">-webkit-filter</span>
-        <span>: </span>
-        <template v-for="(item, $index) in sfilters">
-            <span class="code-key">{{item.name}}</span>
-            <span>(</span>
-            <span  class="code-val">{{item.value[2]}}{{item.unit || ''}}</span>
-            <span>)</span>
-            <span v-if="$index == sfilters.length - 1">;</span>
-        </template>
-      </div>
-      <div>
-        <span class="code-name">filter</span>
+      <div v-for="key in ['-webkit-filter', 'filter']">
+        <span class="code-name">{{key}}</span>
         <span>: </span>
         <template v-for="(item, $index) in sfilters">
             <span class="code-key">{{item.name}}</span>
@@ -116,6 +149,48 @@
       </div>
     </div>
   </script>
+  
+
+  <!--完整代码组件-->
+  <script type="text/x-template" id="fullcode-template">
+    <div class="code">
+      <div>
+        <span class="code-class">.filter </span> {
+      </div>
+      <div class="code-inner">
+        <div v-for="key in ['-webkit-transition', 'transition']">
+          <span class="code-name">{{key}}</span>
+          <span>: </span>
+          <span class="code-key">all</span>
+          <span>, </span>
+          <span class="code-val">.5s</span>
+          <span>, </span>
+          <span class="code-key">ease</span>
+          <span>, </span>
+          <span class="code-val">0s</span>
+          <span>;</span>
+        </div>
+      </div>  
+      <div>}</div>
+
+      <div>
+        <span class="code-class">.filter:hover</span> {
+      </div>
+      <div v-for="key in ['-webkit-filter', 'filter']" class="code-inner">
+        <span class="code-name">{{key}}</span>
+        <span>: </span>
+        <template v-for="(item, $index) in sfilters">
+            <span class="code-key">{{item.name}}</span>
+            <span>(</span>
+            <span  class="code-val">{{item.value[2]}}{{item.unit || ''}}</span>
+            <span>)</span>
+            <span v-if="$index == sfilters.length - 1">;</span>
+        </template>
+      </div>
+      <div>}</div>
+    </div>
+  </script>
+
 
 <script src="js/jquery.js" charset="utf-8"></script>
 <script src="js/vue.min.js" charset="utf-8"></script>

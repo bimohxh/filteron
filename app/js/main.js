@@ -83,6 +83,11 @@
     props: ['sfilters'],
     template: '#code-template'
   })
+  
+  Vue.component('vue-fullcode', {
+    props: ['sfilters'],
+    template: '#fullcode-template'
+  })
 
   Vue.use({
     install: function (Vue, options) {
