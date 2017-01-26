@@ -11,9 +11,16 @@
   </head>
 <body>
   <div class="site-slogan">
-      <h2>Filter On</h2>
-      <small>一个好用的在线图片滤镜效果可视化工具</small>
-    </div>
+    <a href="/" class="logo">
+      <span class="on">Filter</span>on
+    </a>
+    <small>一个好用的在线图片滤镜效果可视化工具</small>
+    <a href="https://github.com/bimohxh/filteron" target="_blank" class="right">
+      <svg class="icon">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/icon.svg#github"></use>
+      </svg>
+    </a>
+  </div>
   <div id="app">
     
     
@@ -66,7 +73,7 @@
               <div class="extra">
                 <a  href="javascript:void(0)" title="完整代码" @click="item.view = 'fullcode'">
                   <svg class="icon icon-full-code">
-                    <use xlink:href="svg/icon.svg#computer"></use>
+                    <use xlink:href="svg/icon.svg#code"></use>
                   </svg>
                 </a>
 
@@ -85,15 +92,15 @@
               <!--完整代码-->
               <div class="full-code-waper" v-show="item.view == 'fullcode'">
                 <div>
-                  <a href="javascript:void(0)" title="复制代码" >
-                    <svg class="icon icon-quetion">
-                      <use xlink:href="svg/icon.svg#question"></use>
+                  <a href="javascript:void(0)" title="复制代码" class="copy-btn">
+                    <svg class="icon icon-copy">
+                      <use xlink:href="svg/icon.svg#copy"></use>
                     </svg>
                   </a>
 
                   <a href="javascript:void(0)" title="关闭" class="right" @click="item.view = 'hover'">
-                    <svg class="icon icon-quetion">
-                      <use xlink:href="svg/icon.svg#question"></use>
+                    <svg class="icon icon-close">
+                      <use xlink:href="svg/icon.svg#close"></use>
                     </svg>
                   </a>
 
@@ -176,6 +183,7 @@
       <div>
         <span class="code-class">.filter:hover</span> {
       </div>
+      <div>
       <div v-for="key in ['-webkit-filter', 'filter']" class="code-inner">
         <span class="code-name">{{key}}</span>
         <span>: </span>
@@ -186,7 +194,7 @@
             <span>)</span>
             <span v-if="$index == sfilters.length - 1">;</span>
         </template>
-      </div>
+      </div></div>
       <div>}</div>
     </div>
   </script>
@@ -197,6 +205,7 @@
 <script src="js/wNumb.js"  charset="utf-8"></script>
 <script src="js/nouislider.js"></script>
 <script src="js/simple.switch.min.js"></script>
+<script src="js/clipboard.min.js"></script>
 <script src="js/main.js"></script>
 
 

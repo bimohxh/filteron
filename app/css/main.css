@@ -35,12 +35,22 @@ a, svg {
 }
 
 a:link, a:visited {
-  color: #444
+  color: #999;
+}
+
+a:link svg, a:visited svg {
+  fill: #999; 
 }
 
 a:active, a:hover {
-  color: #f14f4f
+  color: #f34e5c;
 }
+
+a:active svg, a:hover svg{
+  fill: #f34e5c;
+}
+
+
 
 img {
   transition: all,.5s,ease,0s;
@@ -63,6 +73,20 @@ img {
 
 .site-slogan small {
   color: #ccc
+}
+
+.logo {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+    color: #f34e5c;
+    padding: 10px;
+}
+
+.logo .on {
+    color: #f34e5c;
+    margin-right: 3px;
 }
 
 
@@ -165,6 +189,7 @@ img {
   margin-left: -52px;
   color: #1f8e0a;
   top: 12px;
+  display: none
 }
 
 .fil-item .extra {

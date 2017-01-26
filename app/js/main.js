@@ -210,6 +210,24 @@
       $(".checkbox").simpleSwitch({
         "theme": "LIKE"
       })
+
+
+      var clipboard = new Clipboard('.copy-btn', {
+        text: function(trigger) {
+          var codeStr = $(trigger).closest('.full-code-waper').find('.code').text()
+          codeStr = codeStr.replace(/[\r+\n+\s+]/g, '').replace(/([;}{])/g, '$1\n').replace(/({)/g, ' $1').replace(/,/g, ', ').replace(/\n([\w-])/g, '\n    $1') 
+          return codeStr
+        }
+      })
+
+      clipboard.on('success', function(e) {
+        var tip = $(e.trigger).closest('.full-code-waper').find('.tip')
+        tip.show()
+        setTimeout(function() {
+          tip.fadeOut()
+        }, 1500)
+        console.log(e.trigger)
+      })
     }
   })
 
