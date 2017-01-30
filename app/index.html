@@ -60,7 +60,7 @@
           <div class="fil-item" v-for="(item, $index) in filters" v-cloak>
             <h3>{{item.name}} 
               <span>({{item.desc}})</span>
-              <a href="javascript:void(0)" :title="'关于 ' + item.name"  @click="item.view = (item.view == 'about' ? 'normal' : 'about')">
+              <a href="javascript:void(0)" class="quesa" :title="'关于 ' + item.name"  @click="item.mask = (item.mask == 'about' ? 'none' : 'about')">
                 <svg class="icon icon-quetion">
                   <use xlink:href="svg/icon.svg#question"></use>
                 </svg>
@@ -71,7 +71,7 @@
               <vue-slider :item="item" :index="$index"></vue-slider>
               <vue-code :sfilters="[item]" ></vue-code>
               <div class="extra">
-                <a  href="javascript:void(0)" title="完整代码" @click="item.view = 'fullcode'">
+                <a  href="javascript:void(0)" title="完整代码" @click="item.mask = 'fullcode'" v-show="item.view == 'hover'">
                   <svg class="icon icon-full-code">
                     <use xlink:href="svg/icon.svg#code"></use>
                   </svg>
@@ -85,12 +85,29 @@
               </div>
 
               <!--关于-->
-              <div class="about" v-show="item.view == 'about'">
+              <div class="about" v-show="item.mask == 'about'">
+                <div>
+                  <a href="javascript:void(0)" title="关闭" class="right" @click="item.mask = 'none'">
+                      <svg class="icon icon-close">
+                        <use xlink:href="svg/icon.svg#close"></use>
+                      </svg>
+                    </a>
+                </div>
+
+                <div class="code code-about">
+                  <div>
+                    <span class="code-name">{{item.name}}</span>
+                    <span>(</span>
+                    <span class="code-val">value</span>
+                    <span>)</span>
+                  </div>
+                </div>
+
                 {{item.fdesc}}
               </div>
 
               <!--完整代码-->
-              <div class="full-code-waper" v-show="item.view == 'fullcode'">
+              <div class="full-code-waper" v-show="item.mask == 'fullcode'">
                 <div>
                   <a href="javascript:void(0)" title="复制代码" class="copy-btn">
                     <svg class="icon icon-copy">
@@ -98,7 +115,7 @@
                     </svg>
                   </a>
 
-                  <a href="javascript:void(0)" title="关闭" class="right" @click="item.view = 'hover'">
+                  <a href="javascript:void(0)" title="关闭" class="right" @click="item.mask = 'none'">
                     <svg class="icon icon-close">
                       <use xlink:href="svg/icon.svg#close"></use>
                     </svg>

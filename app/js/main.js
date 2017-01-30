@@ -8,7 +8,7 @@
         value: [0, 100, 3],
         step: 1,
         unit: 'px',
-        fdesc: '给图像设置高斯模糊。“radius”一值设定高斯函数的标准差，或者是屏幕上以多少像素融在一起，所以值越大越模糊；如果没有设定值，则默认是0；这个参数可设置css长度值，但不接受百分比值。'
+        fdesc: '给图像设置高斯模糊。“value”一值设定高斯函数的标准差，或者是屏幕上以多少像素融在一起，所以值越大越模糊；如果没有设定值，则默认是0；这个参数可设置css长度值，但不接受百分比值。'
       },
       {
         name: 'brightness',
@@ -37,7 +37,7 @@
         value: [0, 360, 100],
         step: 1,
         unit: 'deg',
-        fdesc: '给图像应用色相旋转。“angle”一值设定图像会被调整的色环角度值。值为0deg，则图像无变化。若值未设置，默认值是0deg。该值虽然没有最大值，超过360deg的值相当于又绕一圈'
+        fdesc: '给图像应用色相旋转。“value”一值设定图像会被调整的色环角度值。值为0deg，则图像无变化。若值未设置，默认值是0deg。该值虽然没有最大值，超过360deg的值相当于又绕一圈'
       },
       {
         name: 'invert',
@@ -72,6 +72,7 @@
   filerArr.forEach(function (item) {
     item.enabled = true // 合并模式下 是否启用
     item.view = 'normal'// 当前视图 normal   about  hover
+    item.mask = 'none' // 遮罩模式的视图
   })
   
   Vue.component('vue-slider', {

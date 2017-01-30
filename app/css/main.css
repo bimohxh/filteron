@@ -173,6 +173,13 @@ img {
 
 }
 
+.quesa:link svg, .quesa:visited svg {
+  fill: #DDD
+}
+
+.quesa:active svg, .quesa:hover svg {
+  fill: #333
+}
 .full-code-waper p {
   margin: 0; 
   padding: 0;
@@ -193,7 +200,8 @@ img {
 }
 
 .fil-item .extra {
-  overflow: hidden
+  overflow: hidden;
+  height: 25px;
 }
 
 .icon-switch-hover {
@@ -320,6 +328,10 @@ footer {
   color: #ccc;
 }
 
+.code-about.code-about {
+  height: auto;
+  font-size: 18px;
+}
 
 
 .code > div {
