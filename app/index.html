@@ -42,8 +42,7 @@
         <div class="combine-view" v-show="view == 'combine'">
           <div class="left-bar">
               <template v-for="(item, $index) in filters">
-                <h3>{{item.name}}</h3>
-                <vue-slider :item="item" :index="$index" :switchen="true"></vue-slider>
+                  <vue-slider :item="item" :index="$index" :switchen="true"></vue-slider> 
               </template>
               
           </div>
@@ -147,10 +146,11 @@
   <!--滑块组件-->
   <script type="text/x-template" id="slider-template">
     <div class="slider-item" :class="'switchen-' + switchen + ' enabled-' + item.enabled "> 
-      <div class="enable-btn" v-if="switchen">
+      <!--<div class="enable-btn" v-if="switchen">
         <input type="checkbox" class="checkbox" v-model="item.enabled"/>
-      </div>
+      </div>-->
 
+      <a class="enable-btn" href="javascript:void(0)" @click="item.enabled = !item.enabled"> {{item.name}} </a>
       
       <div  class="val-range"   v-bind:data-index="index"></div>
       <input type="text" v-model="item.value[2]" class="slide-txt" @keyup="setSliderVal(index, item)" @change="setSliderVal(index, item)"/>

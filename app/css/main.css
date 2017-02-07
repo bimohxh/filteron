@@ -249,12 +249,24 @@ img {
   width: 100%;
   margin: 0 auto;
   position: relative;
-  padding-left: 270px
+  padding-left: 320px
 }
 
 .left-bar {
-  width: 250px;
+  width: 300px;
   position: absolute;
+  left: 0;
+}
+
+.combine-item {
+  position: relative;
+  padding-left: 50px;
+}
+
+.combine-item h4 {
+  position: absolute;
+  display: inline-block;
+  top: 0;
   left: 0;
 }
 
@@ -289,11 +301,17 @@ img {
 }
 
 .slider-item.switchen-true {
-  padding-left: 50px;
+  padding-left: 100px;
 }
 
 .slider-item.enabled-false.switchen-true .noUi-connect {
   background: rgb(224, 224, 224);
+}
+
+.slider-item.enabled-true.switchen-true .enable-btn {
+  background-color: #6ebf5f;
+  color: #FFF;
+  font-weight: bold;
 }
 
 .slider-item  .slide-txt{
@@ -313,6 +331,13 @@ img {
   position: absolute;
   left: 0;
   top: -5px;
+  padding: 5px 0;
+  background-color: #DDD;
+  width: 90px;
+  border-radius: 2px;
+  text-align: center;
+  display: inline-block;
+  font-size: 12px;
 }
 .slider-item .icon {
   

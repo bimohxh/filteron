@@ -148,7 +148,8 @@
     el: '#app',
     data: {
       img: 'img/demo.jpg',
-      view: 'seperate',
+      
+      view: 'combine',
       sourcesrc: '',
       filters: filerArr
     },
