@@ -249,13 +249,12 @@ img {
   width: 100%;
   margin: 0 auto;
   position: relative;
-  padding-left: 320px
 }
 
 .left-bar {
   width: 300px;
   position: absolute;
-  left: 0;
+  top: 0
 }
 
 .combine-item {
@@ -272,6 +271,7 @@ img {
 
 .right-con {
   padding: 20px;
+  padding-left: 320px
 }
 
 .right-con .img-wraper{
@@ -314,6 +314,10 @@ img {
   font-weight: bold;
 }
 
+.slider-item.switchen-true .enable-btn {
+  display: inline-block
+}
+
 .slider-item  .slide-txt{
   position: absolute;
   right: 0;
@@ -338,6 +342,7 @@ img {
   text-align: center;
   display: inline-block;
   font-size: 12px;
+  display: none
 }
 .slider-item .icon {
   

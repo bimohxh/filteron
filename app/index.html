@@ -6,7 +6,6 @@
     <meta name="keywords" content="filter,滤镜,css3 filter,图片滤镜"/>
     <meta name="description" content="图片 css3 滤镜效果在线预览"/>
     <link href="css/nouislider.css" rel="stylesheet">
-    <link href="css/simple.switch.three.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
   </head>
 <body>
@@ -40,7 +39,7 @@
 
         <!--合成视图-->
         <div class="combine-view" v-show="view == 'combine'">
-          <div class="left-bar">
+          <div class="left-bar pinned">
               <template v-for="(item, $index) in filters">
                   <vue-slider :item="item" :index="$index" :switchen="true"></vue-slider> 
               </template>
@@ -221,7 +220,7 @@
 <script src="js/vue.min.js" charset="utf-8"></script>
 <script src="js/wNumb.js"  charset="utf-8"></script>
 <script src="js/nouislider.js"></script>
-<script src="js/simple.switch.min.js"></script>
+<script src="js/jquery.pin.min.js"></script>
 <script src="js/clipboard.min.js"></script>
 <script src="js/main.js"></script>
 

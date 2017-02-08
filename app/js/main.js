@@ -178,20 +178,6 @@
         noUiSlider.create($(this)[0], {
           start: elobj.value[2],
           connect: [true, false],
-          // tooltips: [wNumb ({ 
-          //   encoder: function (val) {
-          //     switch (elobj.step) {
-          //       case 0.1:
-          //         return Math.floor(val * 10) / 10
-          //       case 0.01:
-          //         return Math.floor(val * 100) / 100
-          //       case 1:
-          //         return Math.floor(val)
-          //       default:
-          //        return val
-          //     }
-          //   }
-          // })],
           step: elobj.step,
           range: {
             'min': elobj.value[0],
@@ -209,11 +195,7 @@
         })
       })
 
-      $(".checkbox").simpleSwitch({
-        "theme": "LIKE"
-      })
-
-
+      // 复制
       var clipboard = new Clipboard('.copy-btn', {
         text: function(trigger) {
           var codeStr = $(trigger).closest('.full-code-waper').find('.code').text()
@@ -229,6 +211,17 @@
           tip.fadeOut()
         }, 1500)
         console.log(e.trigger)
+      })
+
+      var leftBarOffsetTop = $(".pinned").offset().top
+
+      // 订住左侧
+      $(window).scroll(function () {
+        if ($('body').scrollTop() >= leftBarOffsetTop) {
+          $('.pinned').css('position', 'fixed')
+        } else {
+          $('.pinned').css('position', 'absolute')
+        }
       })
     }
   })
