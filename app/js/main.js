@@ -215,13 +215,13 @@
       var leftBarOffsetTop = $(".pinned").offset().top
 
       // 订住左侧
-      $(window).scroll(function () {
-        if ($('body').scrollTop() >= leftBarOffsetTop) {
-          $('.pinned').css('position', 'fixed')
-        } else {
-          $('.pinned').css('position', 'absolute')
-        }
-      })
+      // $(window).scroll(function () {
+      //   if ($('body').scrollTop() >= leftBarOffsetTop) {
+      //     $('.pinned').css('position', 'fixed')
+      //   } else {
+      //     $('.pinned').css('position', 'absolute')
+      //   }
+      // })
     }
   })
 
