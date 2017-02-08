@@ -1,7 +1,7 @@
 {
-  "name": "regexon",
+  "name": "filteron",
   "version": "1.0.0",
-  "description": "A json online viewer and formatter.",
+  "description": "A online css3 image filter tool.",
   "main": "index.js",
   "scripts": {
     "deploy": "node lib/sync.js"
