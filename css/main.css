@@ -1,0 +1,432 @@
+html,body {
+  margin: 0;
+  padding: 0; 
+  color: #555;
+  font-size: 14px;
+   background-color: #f8f9fa;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Menlo, Monaco, Consolas, "Helvetica Neue", Helvetica, "Courier New", 微软雅黑, monospace, Arial, sans-serif, 黑体;
+  
+}
+
+.left {
+  float: left
+}
+
+.right {
+  float: right
+}
+
+.clear {
+  clear: both
+}
+
+[v-cloak] {
+  display: none
+}
+
+a, svg {
+  transition: all,.5s,ease,0s;
+  -webkit-transition: all,.5s,ease,0s;
+  text-decoration: none
+}
+
+a:link, a:visited {
+  color: #999;
+}
+
+a:link svg, a:visited svg {
+  fill: #999; 
+}
+
+a:active, a:hover {
+  color: #f34e5c;
+}
+
+a:active svg, a:hover svg{
+  fill: #f34e5c;
+}
+
+
+
+img {
+  transition: all,.5s,ease,0s;
+  -webkit-transition: all,.5s,ease,0s;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  fill: #000;
+}
+
+.site-slogan {
+  padding: 10px;
+}
+.site-slogan * {
+  display: inline-block
+}
+
+.site-slogan small {
+  color: #ccc
+}
+
+.logo {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+    color: #f34e5c;
+    padding: 10px;
+}
+
+.logo .on {
+    color: #f34e5c;
+    margin-right: 3px;
+}
+
+
+.filters-wraper {
+  width: 70%;
+  margin: 50px auto;
+  min-width: 1000px;
+}
+
+#imgpreview {
+  display: none
+}
+
+.sourceimg {
+  display: block;
+  width: 40%;
+  margin: 0 auto;
+  border: #EEE 3px solid;
+  padding: 10px;
+  outline: none
+}
+
+.fil-item {
+  width: 33%;
+  float: left;
+  padding: 20px;
+ 
+}
+
+.fil-item .inner {
+  background-color: #FFF;
+  padding: 10px;
+  padding-bottom: 20px;
+  position: relative
+}
+
+
+.fil-item h3{
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.fil-item  img{
+  max-width: 100%;
+}
+
+.fil-item .code {
+  padding: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
+  font-size: 12px;
+  height: 100px;
+}
+
+.fil-item .val-range {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.fil-item .about {
+  position: absolute;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.95);;
+  padding: 20px;
+  bottom: 0;
+  left: 0; 
+  right: 0;
+  z-index: 1000;
+  font-family: '微软雅黑';
+  line-height: 25px;
+}
+
+.fil-item .full-code-waper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.95);;
+  padding: 20px;
+  z-index: 1000;
+
+}
+
+.quesa:link svg, .quesa:visited svg {
+  fill: #DDD
+}
+
+.quesa:active svg, .quesa:hover svg {
+  fill: #333
+}
+.full-code-waper p {
+  margin: 0; 
+  padding: 0;
+}
+
+.full-code-waper .tip {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 5px 10px;
+  background-color: rgba(110, 191, 95, 0.47);
+  font-size: 12px;
+  position: absolute;
+  left: 50%;
+  margin-left: -52px;
+  color: #1f8e0a;
+  top: 12px;
+  display: none
+}
+
+.fil-item .extra {
+  overflow: hidden;
+  height: 25px;
+}
+
+.icon-switch-hover {
+  float: right
+}
+
+.fil-item .extra .icon {
+  fill: #ddd;
+}
+
+.hover-btn.active-true  .icon{
+  fill: #f14f4f
+}
+
+.icon-quetion {
+  fill: #DDD;
+  width: 15px;
+  height: 15px;
+}
+
+
+.icon-quetion:hover {
+  fill: #333
+}
+
+.navbar {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.navbar  a {
+  transition: none;
+  -webkit-transition: none;
+}
+
+.navbar .active-true {
+  color: #f14f4f;
+  font-size: 17px;
+}
+
+
+/*合并视图*/
+
+.combine-view {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.left-bar {
+  width: 300px;
+  position: absolute;
+  top: 0
+}
+
+.combine-item {
+  position: relative;
+  padding-left: 50px;
+}
+
+.combine-item h4 {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+}
+
+.right-con {
+  padding: 20px;
+  padding-left: 320px
+}
+
+.right-con .img-wraper{
+  background-color: #FFF;
+  padding: 20px;
+}
+
+.right-con img{
+  max-width: 100%
+}
+
+.right-con .code {
+  padding: 20px;
+  background-color: #f5f2f0
+}
+
+.right-con .code > div {
+  margin: 10px 0
+}
+
+.slider-item {
+  width: 100%;
+  position: relative;
+  padding-right: 60px;
+  margin: 26px 0;
+}
+
+.slider-item.switchen-true {
+  padding-left: 100px;
+}
+
+.slider-item.enabled-false.switchen-true .noUi-connect {
+  background: rgb(224, 224, 224);
+}
+
+.slider-item.enabled-true.switchen-true .enable-btn {
+  background-color: #6ebf5f;
+  color: #FFF;
+  font-weight: bold;
+}
+
+.slider-item.switchen-true .enable-btn {
+  display: inline-block
+}
+
+.slider-item  .slide-txt{
+  position: absolute;
+  right: 0;
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  top: -5px;
+  padding: 5px 0;
+  outline: none;
+  border: 1px solid #D3D3D3;
+  box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
+}
+
+.enable-btn {
+  position: absolute;
+  left: 0;
+  top: -5px;
+  padding: 5px 0;
+  background-color: #DDD;
+  width: 90px;
+  border-radius: 2px;
+  text-align: center;
+  display: inline-block;
+  font-size: 12px;
+  display: none
+}
+.slider-item .icon {
+  
+  width: 15px;
+  height: 15px;
+  fill: #f14f4f;
+}
+
+
+footer {
+  padding: 40px 0;
+  text-align: center;
+  color: #ccc;
+}
+
+.code-about.code-about {
+  height: auto;
+  font-size: 18px;
+}
+
+
+.code > div {
+  overflow: hidden;
+  margin: 10px 0;
+}
+.code > .code-inner {
+  margin-left: 10px;
+}
+
+.code  > div  * {
+  display: inline-block;
+  float:left
+}
+
+/*代码高亮*/
+.code .code-name {
+  color: #1E88DB
+}
+
+.code .code-key {
+  color: #B85B2E;
+  margin-left: 5px;
+}
+
+.code .code-val {
+  color: #B5C87C
+}
+
+.code .code-class {
+  color: #ad7a0e
+}
+
+
+/*switch btn style patch*/
+.Switch_LIKE {
+  width: 35px;
+  height: 20px;
+}
+
+.Switch_LIKE .SwitchButton {
+  width: 23px;
+  height: 23px;
+  top: -2px
+}
+.Switch_LIKE .SwitchButton:after {
+  width: 8px;
+  height: 8px;
+  top: 6px;
+  left: 6px;
+}
+.Switch_LIKE.On .SwitchButton {
+  left: 15px;
+}
+.Switch_LIKE.On .SwitchButton:after {
+  width: 0;
+  height: 8px;
+  border: 1.5px solid #69ddf1;
+  left: 11px;
+}
+.Switch_LIKE .SwitchLine:after {
+  content: ''
+}
+.Switch_LIKE .SwitchButton:after {
+  border: 1.5px solid #f88c8c;
+  left: 7px;
+  top: 7px;
+}
+

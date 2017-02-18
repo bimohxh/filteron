@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>在线图片Filter</title>
+    <meta charset="utf-8" />
+    <meta name="keywords" content="filter,滤镜,css3 filter,图片滤镜"/>
+    <meta name="description" content="图片 css3 滤镜效果在线预览"/>
+    <link href="css/nouislider.css?version=1486524804200" rel="stylesheet">
+    <link href="css/main.css?version=1486524804200" rel="stylesheet">
+  </head>
+<body>
+  <div class="site-slogan">
+    <a href="/" class="logo">
+      <span class="on">Filter</span>on
+    </a>
+    <small>一个好用的在线图片滤镜效果可视化工具</small>
+    <a href="https://github.com/bimohxh/filteron" target="_blank" class="right">
+      <svg class="icon">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="svg/icon.svg#github"></use>
+      </svg>
+    </a>
+  </div>
+  <div id="app">
+    
+    
+    <!--filter列表-->
+     <div class="filters-wraper" v-cloak>
+        <!--菜单栏-->
+        <div class="navbar"> 
+          <a href="javascript:void(0)" @click="view = 'seperate'" :class="'active-' + (view == 'seperate')">独立视图</a>
+          <span> / </span>
+          <a href="javascript:void(0)" @click="view = 'combine'" :class="'active-' + (view == 'combine')">合成视图</a>
+        </div>
+
+        <div>
+          <input type="text" class="sourceimg" placeholder="更换图片地址" v-model="sourcesrc" />
+          <img :src="sourcesrc"  id="imgpreview"/>
+        </div>
+
+        <!--合成视图-->
+        <div class="combine-view" v-show="view == 'combine'">
+          <div class="left-bar pinned">
+              <template v-for="(item, $index) in filters">
+                  <vue-slider :item="item" :index="$index" :switchen="true"></vue-slider> 
+              </template>
+              
+          </div>
+          <div class="right-con">
+            <div class="img-wraper">
+              <img :src="img" :style="computeAllStyle()">
+            </div>
+            <vue-code :sfilters="usables()" ></vue-code>
+          </div>
+        </div>
+
+        <!--独立视图-->
+        <div v-show="view != 'combine'"> 
+          <div class="fil-item" v-for="(item, $index) in filters" v-cloak>
+            <h3>{{item.name}} 
+              <span>({{item.desc}})</span>
+              <a href="javascript:void(0)" class="quesa" :title="'关于 ' + item.name"  @click="item.mask = (item.mask == 'about' ? 'none' : 'about')">
+                <svg class="icon icon-quetion">
+                  <use xlink:href="svg/icon.svg#question"></use>
+                </svg>
+              </a>
+              </h3>
+            <div class="inner">
+              <img :src="img" :style="computeStyle(item, $index)" :class="'imgp-' + $index">
+              <vue-slider :item="item" :index="$index"></vue-slider>
+              <vue-code :sfilters="[item]" ></vue-code>
+              <div class="extra">
+                <a  href="javascript:void(0)" title="完整代码" @click="item.mask = 'fullcode'" v-show="item.view == 'hover'">
+                  <svg class="icon icon-full-code">
+                    <use xlink:href="svg/icon.svg#code"></use>
+                  </svg>
+                </a>
+
+                <a  href="javascript:void(0)" title="切换到Hover动画" @click="switchHover(item)" :class="'hover-btn active-' + (item.view == 'hover')">
+                  <svg class="icon icon-switch-hover">
+                    <use xlink:href="svg/icon.svg#computer"></use>
+                  </svg>
+                </a>
+              </div>
+
+              <!--关于-->
+              <div class="about" v-show="item.mask == 'about'">
+                <div>
+                  <a href="javascript:void(0)" title="关闭" class="right" @click="item.mask = 'none'">
+                      <svg class="icon icon-close">
+                        <use xlink:href="svg/icon.svg#close"></use>
+                      </svg>
+                    </a>
+                </div>
+
+                <div class="code code-about">
+                  <div>
+                    <span class="code-name">{{item.name}}</span>
+                    <span>(</span>
+                    <span class="code-val">value</span>
+                    <span>)</span>
+                  </div>
+                </div>
+
+                {{item.fdesc}}
+              </div>
+
+              <!--完整代码-->
+              <div class="full-code-waper" v-show="item.mask == 'fullcode'">
+                <div>
+                  <a href="javascript:void(0)" title="复制代码" class="copy-btn">
+                    <svg class="icon icon-copy">
+                      <use xlink:href="svg/icon.svg#copy"></use>
+                    </svg>
+                  </a>
+
+                  <a href="javascript:void(0)" title="关闭" class="right" @click="item.mask = 'none'">
+                    <svg class="icon icon-close">
+                      <use xlink:href="svg/icon.svg#close"></use>
+                    </svg>
+                  </a>
+
+                  <div class="tip">
+                    代码复制成功！
+                  </div>
+
+                </div>
+
+                <vue-fullcode :sfilters="[item]" ></vue-fullcode>
+              </div>
+            </div>
+            
+            
+          </div>
+        </div>
+        
+     </div>
+
+  </div>
+
+  <div class="clear"></div>
+  <footer>
+    Created by @bimohxh
+  </footer>
+
+  <!--滑块组件-->
+  <script type="text/x-template" id="slider-template">
+    <div class="slider-item" :class="'switchen-' + switchen + ' enabled-' + item.enabled "> 
+      <!--<div class="enable-btn" v-if="switchen">
+        <input type="checkbox" class="checkbox" v-model="item.enabled"/>
+      </div>-->
+
+      <a class="enable-btn" href="javascript:void(0)" @click="item.enabled = !item.enabled"> {{item.name}} </a>
+      
+      <div  class="val-range"   v-bind:data-index="index"></div>
+      <input type="text" v-model="item.value[2]" class="slide-txt" @keyup="setSliderVal(index, item)" @change="setSliderVal(index, item)"/>
+    </div>
+  </script>
+
+  <!--代码组件-->
+  <script type="text/x-template" id="code-template">
+    <div class="code">
+      <div v-for="key in ['-webkit-filter', 'filter']">
+        <span class="code-name">{{key}}</span>
+        <span>: </span>
+        <template v-for="(item, $index) in sfilters">
+            <span class="code-key">{{item.name}}</span>
+            <span>(</span>
+            <span  class="code-val">{{item.value[2]}}{{item.unit || ''}}</span>
+            <span>)</span>
+            <span v-if="$index == sfilters.length - 1">;</span>
+        </template>
+      </div>
+    </div>
+  </script>
+  
+
+  <!--完整代码组件-->
+  <script type="text/x-template" id="fullcode-template">
+    <div class="code">
+      <div>
+        <span class="code-class">.filter </span> {
+      </div>
+      <div class="code-inner">
+        <div v-for="key in ['-webkit-transition', 'transition']">
+          <span class="code-name">{{key}}</span>
+          <span>: </span>
+          <span class="code-key">all</span>
+          <span>, </span>
+          <span class="code-val">.5s</span>
+          <span>, </span>
+          <span class="code-key">ease</span>
+          <span>, </span>
+          <span class="code-val">0s</span>
+          <span>;</span>
+        </div>
+      </div>  
+      <div>}</div>
+
+      <div>
+        <span class="code-class">.filter:hover</span> {
+      </div>
+      <div>
+      <div v-for="key in ['-webkit-filter', 'filter']" class="code-inner">
+        <span class="code-name">{{key}}</span>
+        <span>: </span>
+        <template v-for="(item, $index) in sfilters">
+            <span class="code-key">{{item.name}}</span>
+            <span>(</span>
+            <span  class="code-val">{{item.value[2]}}{{item.unit || ''}}</span>
+            <span>)</span>
+            <span v-if="$index == sfilters.length - 1">;</span>
+        </template>
+      </div></div>
+      <div>}</div>
+    </div>
+  </script>
+
+
+<script src="js/jquery.js?version=1486524804200" charset="utf-8"></script>
+<script src="js/vue.min.js?version=1486524804200" charset="utf-8"></script>
+<script src="js/wNumb.js?version=1486524804200"  charset="utf-8"></script>
+<script src="js/nouislider.js?version=1486524804200"></script>
+<script src="js/clipboard.min.js?version=1486524804200"></script>
+<script src="js/main.js?version=1486524804200"></script>
+
+
+
+</body>
